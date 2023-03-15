@@ -17,3 +17,6 @@ vite.config.ts.timestamp-*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Vercel
+.vercel
