@@ -1,8 +1,29 @@
-<div
-    class="radar overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px] md:h-[500px] md:w-[500px] lg:h-[550px] lg:w-[550px]"
->
-    <div class="radar-line" />
-</div>
+<script lang="ts">
+    const modes = [
+        { name: "Nerd" },
+        { name: "Sus" },
+        { name: "Gay" },
+        { name: "Sigma" },
+    ];
+</script>
+
+<main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
+    <div
+        class="radar rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+    >
+        <div class="radar-line h-full w-full" />
+    </div>
+    <div class="flex justify-around w-full">
+        <!-- loop over the modes -->
+        {#each modes as mode}
+            <div class="flex items-center space-x-4">
+                <div class="uppercase bold text-lg">
+                    {mode.name}
+                </div>
+            </div>
+        {/each}
+    </div>
+</main>
 
 <style>
     :root {
@@ -11,7 +32,6 @@
     }
 
     .radar {
-        border-radius: 50%;
         background-color: var(--bg-color);
         background-image: linear-gradient(
                 var(--line-color) 1px,
@@ -22,11 +42,8 @@
     }
 
     .radar-line {
-        height: 100%;
-        width: 100%;
         background: conic-gradient(yellow, transparent 20deg);
         animation: scan 5s linear infinite;
-        /* transform-origin: center; */
     }
 
     @keyframes scan {
