@@ -33,17 +33,11 @@
     }
 
     .radar {
-    }
-
-    .radar {
-        position: absolute;
-        height: 50%;
-        width: 2px;
-        background-color: yellow;
-        left: 50%;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background: conic-gradient(yellow, transparent 20deg);
         animation: scan 5s linear infinite;
-        transform-origin: bottom;
-        box-shadow: -10px 0px 10px yellow;
     }
 
     @keyframes scan {
