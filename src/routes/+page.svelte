@@ -54,7 +54,7 @@
 
     <!-- the actual radar -->
     <div
-        class="flex items-center justify-center radar ring-4 ring-gray-400 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="flex items-center justify-center radar ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
     >
@@ -97,9 +97,9 @@
 
 <style>
     :root {
-        --bg-color: green;
-        --line-color: #84c318;
-        --circular-line-color: #d0e3af;
+        --bg-color: #204030;
+        --line-color: rgb(103, 119, 23);
+        --circular-line-color: yellowgreen;
     }
 
     .radar {
@@ -119,7 +119,7 @@
     }
 
     .radar-line {
-        background: conic-gradient(transparent 340deg, yellow);
+        background: conic-gradient(transparent 340deg, var(--circular-line-color));
         animation: scan 5s linear infinite;
     }
 
