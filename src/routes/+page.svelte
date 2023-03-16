@@ -56,6 +56,12 @@
         background-size: 35px 35px, 35px 35px, 20px 20px;
     }
 
+    @media (max-width: 640px) {
+        .radar {
+            background-position: 14.5px 14.5px;
+        }
+    }
+
     .radar-line {
         background: conic-gradient(yellow, transparent 20deg);
         animation: scan 5s linear infinite;
