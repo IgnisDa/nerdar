@@ -15,7 +15,7 @@
     const modes = [
         { name: "Nerd", image: "nerd-emoji.png" },
         { name: "Sus", image: "sus-emoji.gif" },
-        { name: "Gay", image: "gay-emoji.jpg" },
+        { name: "Gay", image: "gay-emoji.png" },
         { name: "Sigma", image: "chad-emoji.png" },
     ];
 
@@ -54,26 +54,32 @@
 
     <!-- the actual radar -->
     <div
-        class="flex items-center justify-center radar ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="relative flex items-center justify-center radar ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
     >
+        <div
+            class="radar-ring rounded-full bg-[var(--circular-line-color)]"
+            style="height: 10px; width: 10px;"
+        />
+        {#each { length: 3 } as _, num}
+            <div
+                class="radar-ring rounded-full"
+                style="height: {(num + 1) * 110}px; width: {(num + 1) * 110}px;"
+            />
+        {/each}
+
         {#if state.playing}
+            <div class="scan-line"></div>
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
-                class="h-20 w-20 absolute object-center z-10"
+                class="h-20 w-20 fixed object-center"
                 style="left: {state.emojiPosition.x - 40}px; top: {state
                     .emojiPosition.y - 40}px;"
             />
             <div class="radar-line h-full w-full" />
         {/if}
-        {#each { length: 4 } as _, num}
-            <div
-                class="radar-ring rounded-full"
-                style="height: {num * 100}px; width: {num * 100}px;"
-            />
-        {/each}
     </div>
 
     <!-- the selection bar -->
@@ -119,9 +125,19 @@
         }
     }
 
+    .scan-line {
+        position: absolute;
+        width: 5px;
+        height: 50%;
+        top: 0;
+        background-color: var(--circular-line-color);
+        transform-origin: bottom;
+        animation: scan 5s linear infinite;
+    }
+
     .radar-line {
         background: conic-gradient(
-            transparent 340deg,
+            transparent 320deg,
             var(--circular-line-color)
         );
         animation: scan 5s linear infinite;
