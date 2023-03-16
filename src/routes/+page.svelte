@@ -12,7 +12,7 @@
 <main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
     <!-- the actual radar -->
     <div
-        class="radar relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="radar ring-4 ring-gray-400 relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
     >
         <img
             src={selectedMode.image}
