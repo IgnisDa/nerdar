@@ -1,4 +1,16 @@
 <script lang="ts">
+    import trung from "../assets/trung-trung.mp3";
+    import { Volume2 as VolumeOn, VolumeX as VolumeOff } from "lucide-svelte";
+    import { Howl } from "howler";
+
+    const _sound = new Howl({ src: [trung], loop: true });
+
+    const state = {
+        playing: false,
+        isMuted: false,
+        sound: _sound,
+    };
+
     const modes = [
         { name: "Nerd", image: "nerd-emoji.png" },
         { name: "Sus", image: "nerd-emoji.jpg" },
@@ -10,16 +22,44 @@
 </script>
 
 <main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
+    <!-- the control panel -->
+    <button
+        on:click={() => {
+            if (state.isMuted) {
+                state.isMuted = false;
+                state.sound.play();
+            } else {
+                state.isMuted = true;
+                state.sound.stop();
+            }
+        }}
+    >
+        {#if state.isMuted}
+            <VolumeOff size={40} />
+        {:else}
+            <VolumeOn size={40} />
+        {/if}
+    </button>
+
     <!-- the actual radar -->
     <div
         class="radar ring-4 ring-gray-400 relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        on:click={() => {
+            if (!state.playing) {
+                state.playing = true;
+                state.sound.play();
+            }
+        }}
+        on:keyup={() => {}}
     >
-        <img
-            src={selectedMode.image}
-            alt={selectedMode.name}
-            class="h-14 w-14 absolute top-20 right-10"
-        />
-        <div class="radar-line h-full w-full" />
+        {#if state.playing}
+            <img
+                src={selectedMode.image}
+                alt={selectedMode.name}
+                class="h-14 w-14 absolute top-20 right-10"
+            />
+            <div class="radar-line h-full w-full" />
+        {/if}
     </div>
 
     <!-- the selection bar -->
