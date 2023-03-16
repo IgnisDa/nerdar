@@ -35,7 +35,7 @@
         height: 100%;
         width: 100%;
         border-radius: 50%;
-        background: conic-gradient(transparent 340deg, #E8EC67);
+        background: conic-gradient(yellow, transparent 20deg);
         animation: scan 5s linear infinite;
     }
 
