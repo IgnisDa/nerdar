@@ -1,28 +1,46 @@
-<script lang="ts">
-    import P5, { type Sketch } from "p5-svelte";
-    let radius = 350;
+<div class="radar-container">
+    <div class="radar">
+        <div class="radar-line" />
+    </div>
+</div>
 
-    const sketch: Sketch = (p5) => {
-        p5.setup = () => {
-            p5.createCanvas(400, 400);
-            p5.stroke("#5fae41");
-        };
+<style>
+    :root {
+        --bg-color: #5fad41;
+        --line-color: #84c318;
+    }
 
-        p5.draw = () => {
-            p5.describe("white circle with a black grid inside it");
-            p5.background(255);
-            p5.strokeWeight(2);
-            p5.circle(p5.width / 2, p5.height / 2, radius);
-            p5.strokeWeight(1);
-            for (let i = 0; i < p5.width; i += p5.width / 16) {
-                for (let j = 0; j < p5.height; j += p5.height / 16) {
-                    p5.stroke(0);
-                    p5.line(i, 0, i, p5.width);
-                    p5.line(0, j, p5.height, j);
-                }
-            }
-        };
-    };
-</script>
+    .radar-container {
+        position: relative;
+        width: 60vh;
+        height: 60vh;
+        border-radius: 50%;
+        background-color: var(--bg-color);
+        background-image: linear-gradient(
+                var(--line-color) 1px,
+                transparent 1px
+            ),
+            linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
+        background-size: 35px 35px, 35px 35px, 20px 20px;
+    }
 
-<P5 {sketch} />
+    .radar {
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;
+    }
+
+    .radar-line {
+        height: 60vh;
+        width: 60vh;
+        background: conic-gradient(yellow, transparent 20deg);
+        animation: scan 5s linear infinite;
+        transform-origin: center;
+    }
+
+    @keyframes scan {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
