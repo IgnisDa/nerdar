@@ -15,8 +15,8 @@
     const modes = [
         { name: "Nerd", image: "nerd-emoji.png" },
         { name: "Sus", image: "sus-emoji.gif" },
-        { name: "Gay", image: "nerd-emoji.jpg", notImplemented: true },
-        { name: "Sigma", image: "nerd-emoji.jpg", notImplemented: true },
+        { name: "Gay", image: "gay-emoji.jpg" },
+        { name: "Sigma", image: "chad-emoji.png" },
     ];
 
     let selectedMode = modes[0];
