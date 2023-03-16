@@ -9,6 +9,7 @@
         playing: false,
         isMuted: false,
         sound: _sound,
+        emojiPosition: { x: 0, y: 0 },
     };
 
     const modes = [
@@ -20,8 +21,9 @@
 
     let selectedMode = modes[0];
 
-    const onClick = (e: HTMLDivElement) => {
-        console.log(e.clientLeft, e);
+    const onClick = (e: MouseEvent) => {
+        state.emojiPosition.x = e.clientX;
+        state.emojiPosition.y = e.clientY;
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
@@ -51,7 +53,7 @@
 
     <!-- the actual radar -->
     <div
-        class="radar ring-4 ring-gray-400 relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="radar ring-4 ring-gray-400 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
     >
@@ -59,7 +61,9 @@
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
-                class="h-14 w-14 absolute top-20 right-10"
+                class="h-20 w-20 absolute object-center"
+                style="left: {state.emojiPosition.x - 40}px; top: {state
+                    .emojiPosition.y - 40}px;"
             />
             <div class="radar-line h-full w-full" />
         {/if}
