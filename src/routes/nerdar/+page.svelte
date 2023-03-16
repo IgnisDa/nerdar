@@ -11,8 +11,12 @@
     }
 
     .content {
+        height: 100vh;
+        width: 100vw;
         display: flex;
         justify-content: center;
+        align-items: center;
+        background-color: black;
     }
 
     .radar-container {
@@ -21,15 +25,10 @@
         height: 60vh;
         border-radius: 50%;
         background-color: var(--bg-color);
-        background-image: linear-gradient(
-                var(--line-color) 1.5px,
-                transparent 1.5px
-            ),
-            linear-gradient(90deg, var(--line-color) 1.5px, transparent 1.5px),
+        background-image: 
             linear-gradient(var(--line-color) 1px, transparent 1px),
             linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
-        background-position: -1.5px -1.5px, -1.5px -1.5px, -1px -1px, -1px -1px;
-        background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        background-size: 35px 35px, 35px 35px, 20px 20px;
     }
 
     .radar {
@@ -41,7 +40,7 @@
     }
 
     @keyframes scan {
-        100% {
+        to {
             transform: rotate(360deg);
         }
     }
