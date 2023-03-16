@@ -103,7 +103,7 @@
     }
 
     .radar-line {
-        background: conic-gradient(yellow, transparent 20deg);
+        background: conic-gradient(transparent 340deg, yellow);
         animation: scan 5s linear infinite;
     }
 
