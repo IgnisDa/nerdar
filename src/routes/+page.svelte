@@ -90,7 +90,7 @@
         {#each modes as mode}
             <div class="flex items-center space-x-4">
                 <button
-                    class="uppercase bold text-lg"
+                    class="uppercase bold text-lg {mode === selectedMode && 'text-yellow-300'}"
                     on:click={() => {
                         selectedMode = mode;
                     }}
