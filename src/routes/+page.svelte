@@ -10,14 +10,13 @@
         isMuted: false,
         sound: _sound,
         emojiPosition: { x: 0, y: 0 },
-        conicalRotation: 0,
     };
 
     const modes = [
         { name: "Nerd", image: "nerd-emoji.png" },
         { name: "Sus", image: "sus-emoji.gif" },
-        { name: "Gay", image: "nerd-emoji.jpg" },
-        { name: "Sigma", image: "nerd-emoji.jpg" },
+        { name: "Gay", image: "nerd-emoji.jpg", notImplemented: true },
+        { name: "Sigma", image: "nerd-emoji.jpg", notImplemented: true },
     ];
 
     let selectedMode = modes[0];
@@ -26,10 +25,6 @@
         state.emojiPosition.x = e.clientX;
         state.emojiPosition.y = e.clientY;
 
-        // state.conicalRotation = e.clientX * e.clientY * 1e-4 * 15;
-
-        // console.log(state);
-
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
@@ -37,10 +32,7 @@
     };
 </script>
 
-<main
-    style="--rotation: {state.conicalRotation}deg;"
-    class="flex flex-col min-h-screen justify-center space-y-24 items-center"
->
+<main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
     <!-- the control panel -->
     <button
         on:click={() => {
@@ -90,9 +82,12 @@
         {#each modes as mode}
             <div class="flex items-center space-x-4">
                 <button
-                    class="uppercase bold text-lg {mode === selectedMode && 'text-yellow-300'}"
+                    class="uppercase bold text-lg {mode === selectedMode &&
+                        'text-yellow-300'}"
                     on:click={() => {
-                        selectedMode = mode;
+                        if (mode.notImplemented)
+                            alert("This mode has not been implemented yet");
+                        else selectedMode = mode;
                     }}
                 >
                     {mode.name}
