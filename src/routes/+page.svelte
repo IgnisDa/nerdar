@@ -80,10 +80,11 @@
     <!-- {JSON.stringify(selectedMode)} -->
     <div class="flex justify-around w-full">
         {#each modes as mode}
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 h-20">
                 <button
-                    class="uppercase bold text-lg {mode === selectedMode &&
-                        'text-yellow-300'}"
+                    class="bg-white uppercase font-bold w-20 h-10 rounded-xl text-black transition-all box-content {mode ===
+                        selectedMode &&
+                        '!bg-black text-yellow-500 border-4 border-yellow-500 -translate-y-2'}"
                     on:click={() => {
                         selectedMode = mode;
                     }}
@@ -119,7 +120,10 @@
     }
 
     .radar-line {
-        background: conic-gradient(transparent 340deg, var(--circular-line-color));
+        background: conic-gradient(
+            transparent 340deg,
+            var(--circular-line-color)
+        );
         animation: scan 5s linear infinite;
     }
 
