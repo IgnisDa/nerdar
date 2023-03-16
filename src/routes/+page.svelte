@@ -1,7 +1,7 @@
-<div class="radar-container">
-    <div class="radar">
-        <div class="radar-line" />
-    </div>
+<div
+    class="radar overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px] md:h-[500px] md:w-[500px] lg:h-[550px] lg:w-[550px]"
+>
+    <div class="radar-line" />
 </div>
 
 <style>
@@ -10,10 +10,7 @@
         --line-color: #84c318;
     }
 
-    .radar-container {
-        position: relative;
-        width: 60vh;
-        height: 60vh;
+    .radar {
         border-radius: 50%;
         background-color: var(--bg-color);
         background-image: linear-gradient(
@@ -24,18 +21,12 @@
         background-size: 35px 35px, 35px 35px, 20px 20px;
     }
 
-    .radar {
-        border-radius: 50%;
+    .radar-line {
         height: 100%;
         width: 100%;
-    }
-
-    .radar-line {
-        height: 60vh;
-        width: 60vh;
         background: conic-gradient(yellow, transparent 20deg);
         animation: scan 5s linear infinite;
-        transform-origin: center;
+        /* transform-origin: center; */
     }
 
     @keyframes scan {
