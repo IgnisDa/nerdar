@@ -342,6 +342,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/howler@npm:2.2.7":
+  version: 2.2.7
+  resolution: "@types/howler@npm:2.2.7"
+  checksum: e9d6723f946a7526c8562436c06ad64d55f63a0573bfbf08c776e3785ab520a3138da84058f280b0fe7d8a819af77af3dd62d88f873a316d3723dc2ad575aa0d
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 18.15.3
   resolution: "@types/node@npm:18.15.3"
@@ -1181,6 +1188,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"howler@npm:2.2.3":
+  version: 2.2.3
+  resolution: "howler@npm:2.2.3"
+  checksum: c04ce19411f4d86f8508d411a93aea943f128c2686b3df3c61383fd4ed8f5551232c4389aba3a8d4c8b0eeb34ae51df5a9c3ccd9ba48583ac53e9bf9fcbd1ecf
+  languageName: node
+  linkType: hard
+
 "http-cache-semantics@npm:^4.1.0":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -1371,6 +1385,15 @@ __metadata:
   version: 7.18.3
   resolution: "lru-cache@npm:7.18.3"
   checksum: e550d772384709deea3f141af34b6d4fa392e2e418c1498c078de0ee63670f1f46f5eee746e8ef7e69e1c895af0d4224e62ee33e66a543a14763b0f2e74c1356
+  languageName: node
+  linkType: hard
+
+"lucide-svelte@npm:0.125.0":
+  version: 0.125.0
+  resolution: "lucide-svelte@npm:0.125.0"
+  peerDependencies:
+    svelte: ^3.49.0
+  checksum: 42a9c8b89c2aece67e4ab35041b0d6c0b8daaca9722c8de704ed0d402702044ae08a7f1937d3e4c6aabf5d044fdef7bb07861a5b57c1ce42010cd3c1cf0c8996
   languageName: node
   linkType: hard
 
@@ -1630,8 +1653,11 @@ __metadata:
   dependencies:
     "@sveltejs/adapter-vercel": 2.3.1
     "@sveltejs/kit": 1.5.0
+    "@types/howler": 2.2.7
     "@types/p5": 1.5.0
     autoprefixer: 10.4.14
+    howler: 2.2.3
+    lucide-svelte: 0.125.0
     p5: 1.6.0
     p5-svelte: 3.1.2
     postcss: 8.4.21
