@@ -1,25 +1,40 @@
 <script lang="ts">
     const modes = [
-        { name: "Nerd" },
-        { name: "Sus" },
-        { name: "Gay" },
-        { name: "Sigma" },
+        { name: "Nerd", image: "nerd-emoji.png" },
+        { name: "Sus", image: "nerd-emoji.jpg" },
+        { name: "Gay", image: "nerd-emoji.jpg" },
+        { name: "Sigma", image: "nerd-emoji.jpg" },
     ];
+
+    let selectedMode = modes[0];
 </script>
 
 <main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
+    <!-- the actual radar -->
     <div
-        class="radar rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="radar relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
     >
+        <img
+            src={selectedMode.image}
+            alt={selectedMode.name}
+            class="h-14 w-14 absolute top-20 right-10"
+        />
         <div class="radar-line h-full w-full" />
     </div>
+
+    <!-- the selection bar -->
+    <!-- {JSON.stringify(selectedMode)} -->
     <div class="flex justify-around w-full">
-        <!-- loop over the modes -->
         {#each modes as mode}
             <div class="flex items-center space-x-4">
-                <div class="uppercase bold text-lg">
+                <button
+                    class="uppercase bold text-lg"
+                    on:click={() => {
+                        selectedMode = mode;
+                    }}
+                >
                     {mode.name}
-                </div>
+                </button>
             </div>
         {/each}
     </div>
