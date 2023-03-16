@@ -10,11 +10,12 @@
         isMuted: false,
         sound: _sound,
         emojiPosition: { x: 0, y: 0 },
+        conicalRotation: 0,
     };
 
     const modes = [
         { name: "Nerd", image: "nerd-emoji.png" },
-        { name: "Sus", image: "nerd-emoji.jpg" },
+        { name: "Sus", image: "sus-emoji.gif" },
         { name: "Gay", image: "nerd-emoji.jpg" },
         { name: "Sigma", image: "nerd-emoji.jpg" },
     ];
@@ -24,6 +25,11 @@
     const onClick = (e: MouseEvent) => {
         state.emojiPosition.x = e.clientX;
         state.emojiPosition.y = e.clientY;
+
+        // state.conicalRotation = e.clientX * e.clientY * 1e-4 * 15;
+
+        // console.log(state);
+
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
@@ -31,7 +37,10 @@
     };
 </script>
 
-<main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
+<main
+    style="--rotation: {state.conicalRotation}deg;"
+    class="flex flex-col min-h-screen justify-center space-y-24 items-center"
+>
     <!-- the control panel -->
     <button
         on:click={() => {
@@ -122,6 +131,9 @@
     }
 
     @keyframes scan {
+        from {
+            transform: rotate();
+        }
         to {
             transform: rotate(360deg);
         }
