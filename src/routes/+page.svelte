@@ -19,6 +19,14 @@
     ];
 
     let selectedMode = modes[0];
+
+    const onClick = (e: HTMLDivElement) => {
+        console.log(e.clientLeft, e);
+        if (!state.playing) {
+            state.playing = true;
+            state.sound.play();
+        }
+    };
 </script>
 
 <main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
@@ -44,12 +52,7 @@
     <!-- the actual radar -->
     <div
         class="radar ring-4 ring-gray-400 relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
-        on:click={() => {
-            if (!state.playing) {
-                state.playing = true;
-                state.sound.play();
-            }
-        }}
+        on:click={onClick}
         on:keyup={() => {}}
     >
         {#if state.playing}
