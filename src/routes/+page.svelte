@@ -69,7 +69,7 @@
         {/if}
         {#each { length: 4 } as _, num}
             <div
-                class="radar-ring border-2 rounded-full"
+                class="radar-ring rounded-full"
                 style="height: {num * 100}px; width: {num * 100}px;"
             />
         {/each}
@@ -95,8 +95,9 @@
 
 <style>
     :root {
-        --bg-color: #5fad41;
+        --bg-color: green;
         --line-color: #84c318;
+        --circular-line-color: #d0e3af;
     }
 
     .radar {
@@ -127,7 +128,8 @@
     }
 
     .radar-ring {
-        border-color: var(--line-color);
+        border-color: var(--circular-line-color);
         position: absolute;
+        border-width: 3px;
     }
 </style>
