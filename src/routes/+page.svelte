@@ -53,7 +53,7 @@
 
     <!-- the actual radar -->
     <div
-        class="radar ring-4 ring-gray-400 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="flex items-center justify-center radar ring-4 ring-gray-400 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
     >
@@ -61,12 +61,18 @@
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
-                class="h-20 w-20 absolute object-center"
+                class="h-20 w-20 absolute object-center z-10"
                 style="left: {state.emojiPosition.x - 40}px; top: {state
                     .emojiPosition.y - 40}px;"
             />
             <div class="radar-line h-full w-full" />
         {/if}
+        {#each { length: 4 } as _, num}
+            <div
+                class="radar-ring border-2 rounded-full"
+                style="height: {num * 100}px; width: {num * 100}px;"
+            />
+        {/each}
     </div>
 
     <!-- the selection bar -->
@@ -118,5 +124,10 @@
         to {
             transform: rotate(360deg);
         }
+    }
+
+    .radar-ring {
+        border-color: var(--line-color);
+        position: absolute;
     }
 </style>
