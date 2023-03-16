@@ -85,9 +85,7 @@
                     class="uppercase bold text-lg {mode === selectedMode &&
                         'text-yellow-300'}"
                     on:click={() => {
-                        if (mode.notImplemented)
-                            alert("This mode has not been implemented yet");
-                        else selectedMode = mode;
+                        selectedMode = mode;
                     }}
                 >
                     {mode.name}
