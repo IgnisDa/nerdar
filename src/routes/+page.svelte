@@ -9,11 +9,13 @@
     let selectedMode = modes[0];
 </script>
 
+<p>Umm, Actually</p>
 <main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
     <!-- the actual radar -->
     <div
-        class="radar ring-4 ring-gray-400 relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="radar ring-4 ring-[#53C81C] relative rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
     >
+        <div class="inner-rings" />
         <img
             src={selectedMode.image}
             alt={selectedMode.name}
@@ -26,7 +28,7 @@
     <!-- {JSON.stringify(selectedMode)} -->
     <div class="flex justify-around w-full">
         {#each modes as mode}
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 text-black">
                 <button
                     class="uppercase bold text-lg"
                     on:click={() => {
@@ -41,32 +43,40 @@
 </main>
 
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Mulish:ital@1&display=swap");
     :root {
-        --bg-color: #5fad41;
-        --line-color: #84c318;
+        --bg-color: #63ce3e;
+        --line-color: #eef14f;
     }
 
     .radar {
-        border-radius: 50%;
-        border: black 1px solid;
         background-color: var(--bg-color);
-        /* background-image: linear-gradient(
-                var(--line-color) 1px,
-                transparent 1px
-            ),
-            linear-gradient(90deg, var(--line-color) 1px, transparent 1px); */
         background-size: 35px 35px, 35px 35px, 20px 20px;
     }
 
     .radar-line {
-        background: conic-gradient(yellow, transparent 20deg);
-        /* animation: scan 5s linear infinite; */
-        /* transform-origin: center; */
+        background: conic-gradient(var(--line-color), transparent 20deg);
+        animation: scan 5s linear infinite;
     }
 
     @keyframes scan {
         to {
             transform: rotate(360deg);
         }
+    }
+    p {
+        margin-top: 1rem;
+        color: black;
+        padding: 0.25em;
+        background-color: white;
+        font-family: "Mulish", sans-serif;
+        font-size: 2em;
+    }
+    .inner-rings {
+        position: absolute;
+        border-radius: 50%;
+        outline: var(--line-color) solid 1px;
+        height: 30%;
+        width: 30%;
     }
 </style>
