@@ -2,6 +2,10 @@
     import trung from "../assets/trung-trung.mp3";
     import { Volume2 as VolumeOn, VolumeX as VolumeOff } from "lucide-svelte";
     import { Howl } from "howler";
+    import { onMount } from "svelte";
+
+    let el: HTMLDivElement;
+    let center: [number, number];
 
     const _sound = new Howl({ src: [trung], loop: true });
 
@@ -22,14 +26,60 @@
     let selectedMode = modes[0];
 
     const onClick = (e: MouseEvent) => {
-        state.emojiPosition.x = e.clientX;
-        state.emojiPosition.y = e.clientY;
+        state.emojiPosition.x = e.clientX - 40;
+        state.emojiPosition.y = e.clientY - 40;
+
+        const xNew = e.clientX - center[0];
+        const yNew = center[1] - e.clientY;
+
+        const m = yNew / xNew;
+
+        enum Quadrant {
+            One,
+            Two,
+            Three,
+            Four,
+        }
+
+        let quadrant = null;
+
+        if (xNew > 0) {
+            if (yNew > 0) quadrant = Quadrant.One;
+            else quadrant = Quadrant.Four;
+        } else {
+            if (yNew > 0) quadrant = Quadrant.Two;
+            else quadrant = Quadrant.Three;
+        }
+        
+        let angle = Math.atan(m) * (180 / Math.PI);
+
+        switch (quadrant) {
+            case Quadrant.One:
+                angle += 0;
+                break;
+            case Quadrant.Two:
+                angle += 180;
+                break;
+            case Quadrant.Three:
+                angle += 180;
+                break;
+            case Quadrant.Four:
+                angle += 360;
+                break;
+        }
+
+        console.log({ angle });
 
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
         }
     };
+
+    onMount(async () => {
+        const { top, bottom, left, right } = el.getBoundingClientRect();
+        center = [left + (right - left) / 2, top + (bottom - top) / 2];
+    });
 </script>
 
 <main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
@@ -57,6 +107,7 @@
         class="relative flex items-center justify-center radar ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
+        bind:this={el}
     >
         <div
             class="radar-ring rounded-full bg-[var(--circular-line-color)]"
@@ -70,13 +121,13 @@
         {/each}
 
         {#if state.playing}
-            <div class="scan-line"></div>
+            <div class="scan-line" />
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
                 class="h-20 w-20 fixed object-center"
-                style="left: {state.emojiPosition.x - 40}px; top: {state
-                    .emojiPosition.y - 40}px;"
+                style="left: {state.emojiPosition.x}px; top: {state
+                    .emojiPosition.y}px;"
             />
             <div class="radar-line h-full w-full" />
         {/if}
