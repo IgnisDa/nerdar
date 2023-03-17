@@ -131,6 +131,20 @@
                     .emojiPosition.y}px;"
             />
             <div class="radar-line h-full w-full" />
+        {:else}
+            <div class="absolute left-10 ">
+                <img
+                    src="/pointing-hand.png"
+                    alt="Pointing Hand"
+                    class="h-20 w-20 rotate-45"
+                />
+                <p
+                    class="text-lg text-lime-300 bg-black/50 p-1 rounded-lg text-center font-bold uppercase"
+                >
+                    <span class="block">Tap anywhere</span>
+                    <span class="block">to find {selectedMode.name}</span>
+                </p>
+            </div>
         {/if}
     </div>
 
