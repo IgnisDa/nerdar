@@ -6,6 +6,7 @@
 
     let el: HTMLDivElement;
     let center: [number, number];
+    let mainAngle;
 
     const _sound = new Howl({ src: [trung], loop: true });
 
@@ -50,7 +51,7 @@
             if (yNew > 0) quadrant = Quadrant.Two;
             else quadrant = Quadrant.Three;
         }
-        
+
         let angle = Math.atan(m) * (180 / Math.PI);
 
         switch (quadrant) {
@@ -69,7 +70,8 @@
         }
 
         console.log({ angle });
-
+        mainAngle = angle;
+        console.log({ mainAngle });
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
@@ -82,7 +84,10 @@
     });
 </script>
 
-<main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
+<main
+    class="flex flex-col min-h-screen justify-center space-y-24 items-center"
+    style="--m-angle: {mainAngle + 'deg'};"
+>
     <!-- the control panel -->
     <button
         on:click={() => {
@@ -121,7 +126,7 @@
         {/each}
 
         {#if state.playing}
-            <div class="scan-line"/>
+            <div class="scan-line" />
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
@@ -158,8 +163,8 @@
         --bg-color: #204030;
         --line-color: rgb(103, 119, 23);
         --circular-line-color: yellowgreen;
-        --angle: 0deg;
         --angle-ofset: 120deg;
+        --angle-new: var(--m-angle);
     }
 
     .radar {
@@ -198,10 +203,12 @@
 
     @keyframes scan {
         from {
-            transform: rotate(calc(var(--angle) - var(--angle-ofset)));
+            transform: rotate(calc(var(--angle-new) - var(--angle-ofset)));
         }
         to {
-            transform: rotate(calc(360deg + var(--angle) - var(--angle-ofset)));
+            transform: rotate(
+                calc(360deg + var(--angle-new) - var(--angle-ofset))
+            );
         }
     }
 
