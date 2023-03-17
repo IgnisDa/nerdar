@@ -4,7 +4,11 @@ const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production';
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        heading: ["Rubik Marker Hatch"]
+      }
+    },
   },
   plugins: [
     IS_DEVELOPMENT && require('tailwindcss-debug-screens'),

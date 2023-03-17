@@ -23,6 +23,12 @@
         { name: "Sigma", image: "chad-emoji.png" },
     ];
 
+    const developers = [
+        { name: "Diptesh", link: "https://github.com/ignisda" },
+        { name: "Dev", link: "https://github.com/Jungl-ee" },
+        { name: "Anirudh", link: "https://github.com/jupeeter8" },
+    ];
+
     let selectedMode = modes[0];
 
     const onClick = (e: MouseEvent) => {
@@ -75,6 +81,20 @@
     class="flex flex-col min-h-screen justify-center space-y-24 items-center"
     style="--angle: {renderAngle + 'deg'};"
 >
+    <!-- the attributions column -->
+    <div class="w-full mx-5 text-center space-y-3">
+        <h1 class="text-4xl uppercase font-bold font-heading">Nerdar</h1>
+        <p class="text-gray-400">
+            <span>Made by</span>
+            {#each developers as developer, num}
+                <a class="underline decoration-blue-400" href={developer.link}
+                    >{developer.name}</a
+                >{num !== developers.length - 1 ? "," : ""}
+                {" "}
+            {/each}
+        </p>
+    </div>
+
     <!-- the control panel -->
     <button
         on:click={() => {
