@@ -2,18 +2,16 @@
     import trung from "../assets/trung-trung.mp3";
     import { Volume2 as VolumeOn, VolumeX as VolumeOff } from "lucide-svelte";
     import { Howl } from "howler";
-    import { onMount } from "svelte";
 
-    let el: HTMLDivElement;
-    let center: [number, number];
-    let mainAngle;
+    let radarElement: HTMLDivElement;
+    let mainAngle: number;
 
-    const _sound = new Howl({ src: [trung], loop: true });
+    const _howlerSound = new Howl({ src: [trung], loop: true });
 
     const state = {
         playing: false,
         isMuted: false,
-        sound: _sound,
+        sound: _howlerSound,
         emojiPosition: { x: 0, y: 0 },
     };
 
@@ -27,6 +25,10 @@
     let selectedMode = modes[0];
 
     const onClick = (e: MouseEvent) => {
+        const { top, bottom, left, right } =
+            radarElement.getBoundingClientRect();
+        const center = [left + (right - left) / 2, top + (bottom - top) / 2];
+
         state.emojiPosition.x = e.clientX - 40;
         state.emojiPosition.y = e.clientY - 40;
 
@@ -69,19 +71,12 @@
                 break;
         }
 
-        console.log({ angle });
         mainAngle = angle;
-        console.log({ mainAngle });
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
         }
     };
-
-    onMount(async () => {
-        const { top, bottom, left, right } = el.getBoundingClientRect();
-        center = [left + (right - left) / 2, top + (bottom - top) / 2];
-    });
 </script>
 
 <main
@@ -112,7 +107,7 @@
         class="radar relative flex items-center justify-center ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
-        bind:this={el}
+        bind:this={radarElement}
     >
         <div
             class="radar-ring rounded-full bg-[var(--circular-line-color)]"
@@ -139,7 +134,6 @@
     </div>
 
     <!-- the selection bar -->
-    <!-- {JSON.stringify(selectedMode)} -->
     <div class="flex justify-around w-full">
         {#each modes as mode}
             <div class="flex items-center space-x-4 h-20">
@@ -163,7 +157,7 @@
         --bg-color: #204030;
         --line-color: rgb(103, 119, 23);
         --circular-line-color: yellowgreen;
-        --angle-ofset: 120deg;
+        --angle-offset: 120deg;
         --angle-new: var(--m-angle);
     }
 
@@ -203,11 +197,11 @@
 
     @keyframes scan {
         from {
-            transform: rotate(calc(var(--angle-new) - var(--angle-ofset)));
+            transform: rotate(calc(var(--angle-new) - var(--angle-offset)));
         }
         to {
             transform: rotate(
-                calc(360deg + var(--angle-new) - var(--angle-ofset))
+                calc(360deg + var(--angle-new) - var(--angle-offset))
             );
         }
     }
@@ -230,7 +224,6 @@
         100% {
             opacity: 0;
         }
-
         33.33% {
             opacity: 1;
         }
