@@ -2,6 +2,7 @@
     import trung from "../assets/trung-trung.mp3";
     import { Volume2 as VolumeOn, VolumeX as VolumeOff } from "lucide-svelte";
     import { Howl } from "howler";
+    import { match } from "ts-pattern";
 
     let radarElement: HTMLDivElement;
     let renderAngle: number;
@@ -56,22 +57,12 @@
 
         let angle = Math.atan(m) * (180 / Math.PI);
 
-        switch (quadrant) {
-            case Quadrant.One:
-                angle = 90 - angle;
-                break;
-            case Quadrant.Two:
-                angle = 270 - angle;
-                break;
-            case Quadrant.Three:
-                angle = 270 - angle;
-                break;
-            case Quadrant.Four:
-                angle = 90 - angle;
-                break;
-        }
+        const newAngle = match(quadrant)
+            .with(Quadrant.One, Quadrant.Four, () => 90 - angle)
+            .with(Quadrant.Two, Quadrant.Three, () => 270 - angle)
+            .run();
 
-        renderAngle = Math.floor(angle);
+        renderAngle = Math.floor(newAngle);
 
         if (!state.playing) {
             state.playing = true;
