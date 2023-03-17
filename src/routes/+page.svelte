@@ -83,7 +83,9 @@
 >
     <!-- the attributions column -->
     <div class="w-full mx-5 text-center space-y-3">
-        <h1 class="text-4xl uppercase font-bold font-heading">Nerdar</h1>
+        <h1 class="text-7xl uppercase font-bold font-heading underline">
+            Nerdar
+        </h1>
         <p class="text-gray-400">
             <span>Made by</span>
             {#each developers as developer, num}
