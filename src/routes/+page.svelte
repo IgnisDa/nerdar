@@ -78,7 +78,7 @@
 </script>
 
 <main
-    class="flex flex-col min-h-screen justify-center space-y-24 items-center"
+    class="flex flex-col min-h-screen justify-center space-y-16 items-center"
     style="--angle: {renderAngle + 'deg'};"
 >
     <!-- the attributions column -->
@@ -124,8 +124,7 @@
         bind:this={radarElement}
     >
         <div
-            class="radar-ring rounded-full bg-[var(--circular-line-color)]"
-            style="height: 10px; width: 10px;"
+            class="radar-ring rounded-full bg-[var(--circular-line-color)] w-4 h-4"
         />
         {#each { length: 3 } as _, num}
             <div
