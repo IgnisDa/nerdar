@@ -4,6 +4,7 @@
     import { Howl } from "howler";
 
     let radarElement: HTMLDivElement;
+    let renderAngle: number;
 
     const _howlerSound = new Howl({ src: [trung], loop: true });
 
@@ -70,6 +71,8 @@
                 break;
         }
 
+        renderAngle = Math.floor(angle);
+
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
@@ -77,7 +80,10 @@
     };
 </script>
 
-<main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
+<main
+    class="flex flex-col min-h-screen justify-center space-y-24 items-center"
+    style="--angle: {renderAngle + 'deg'};"
+>
     <!-- the control panel -->
     <button
         on:click={() => {
@@ -152,7 +158,7 @@
         --bg-color: #204030;
         --line-color: rgb(103, 119, 23);
         --circular-line-color: yellowgreen;
-        --angle: 0deg;
+        --angle: var(--angle, 0deg);
         --angle-offset: 120deg;
     }
 
@@ -208,7 +214,7 @@
     }
 
     .emoji {
-        filter: blur(1px) contrast(200%) hue-rotate(50deg) sepia(40%);
+        filter: blur(1px) contrast(200%) hue-rotate(40deg) sepia(40%);
         animation: appear 3s ease-in-out infinite;
     }
 
