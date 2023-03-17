@@ -36,6 +36,14 @@
             radarElement.getBoundingClientRect();
         const center = [left + (right - left) / 2, top + (bottom - top) / 2];
 
+        if (
+            e.clientX < left ||
+            e.clientX > right ||
+            e.clientY < top ||
+            e.clientY > bottom
+        )
+            return;
+
         state.emojiPosition.x = e.clientX - 40;
         state.emojiPosition.y = e.clientY - 40;
 
@@ -76,6 +84,12 @@
         }
     };
 </script>
+
+<svelte:head>
+    {#each modes as mode}
+        <link rel="preload" as="image" href={`/${mode.image}`} />
+    {/each}
+</svelte:head>
 
 <main
     class="flex flex-col min-h-screen justify-center space-y-16 items-center"
