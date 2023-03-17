@@ -55,16 +55,16 @@
 
         switch (quadrant) {
             case Quadrant.One:
-                angle += 0;
+                angle = 90 - angle;
                 break;
             case Quadrant.Two:
-                angle += 180;
+                angle = 270 - angle;
                 break;
             case Quadrant.Three:
-                angle += 180;
+                angle = 270 - angle;
                 break;
             case Quadrant.Four:
-                angle += 360;
+                angle = 90 - angle;
                 break;
         }
 
@@ -121,7 +121,7 @@
         {/each}
 
         {#if state.playing}
-            <div class="scan-line" />
+            <div class="scan-line"/>
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
@@ -158,6 +158,8 @@
         --bg-color: #204030;
         --line-color: rgb(103, 119, 23);
         --circular-line-color: yellowgreen;
+        --angle: 0deg;
+        --angle-ofset: 120deg;
     }
 
     .radar {
@@ -183,7 +185,7 @@
         top: 0;
         background-color: var(--circular-line-color);
         transform-origin: bottom;
-        animation: scan 5s linear infinite;
+        animation: scan 3s linear infinite;
     }
 
     .radar-line {
@@ -191,15 +193,15 @@
             transparent 320deg,
             var(--circular-line-color)
         );
-        animation: scan 5s linear infinite;
+        animation: scan 3s linear infinite;
     }
 
     @keyframes scan {
         from {
-            transform: rotate();
+            transform: rotate(calc(var(--angle) - var(--angle-ofset)));
         }
         to {
-            transform: rotate(360deg);
+            transform: rotate(calc(360deg + var(--angle) - var(--angle-ofset)));
         }
     }
 
