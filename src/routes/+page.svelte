@@ -104,7 +104,7 @@
 
     <!-- the actual radar -->
     <div
-        class="relative flex items-center justify-center radar ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
+        class="radar relative flex items-center justify-center ring-4 ring-gray-500 rounded-full overflow-hidden h-[380px] w-[380px] sm:h-[420px] sm:w-[420px]"
         on:click={onClick}
         on:keyup={() => {}}
         bind:this={el}
@@ -125,7 +125,7 @@
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
-                class="h-20 w-20 fixed object-center"
+                class="emoji h-20 w-20 fixed object-center"
                 style="left: {state.emojiPosition.x}px; top: {state
                     .emojiPosition.y}px;"
             />
@@ -209,5 +209,23 @@
         border-color: var(--circular-line-color);
         position: absolute;
         border-width: 3px;
+    }
+
+    .emoji {
+        filter: blur(1px) contrast(200%) hue-rotate(50deg) sepia(40%);
+        animation: appear 3s ease-in-out infinite;
+    }
+
+    @keyframes appear {
+        0%,
+        27%,
+        80%,
+        100% {
+            opacity: 0;
+        }
+
+        33.33% {
+            opacity: 1;
+        }
     }
 </style>
