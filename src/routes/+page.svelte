@@ -19,7 +19,7 @@
     const modes = [
         { name: "Nerd", image: "nerd-emoji.png" },
         { name: "Sus", image: "sus-emoji.gif" },
-        { name: "Pols", image: "pols-emoji.gif" },
+        { name: "Funny", image: "clown-emoji.gif" },
         { name: "Sigma", image: "chad-emoji.png" },
     ];
 
