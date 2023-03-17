@@ -4,7 +4,6 @@
     import { Howl } from "howler";
 
     let radarElement: HTMLDivElement;
-    let mainAngle: number;
 
     const _howlerSound = new Howl({ src: [trung], loop: true });
 
@@ -71,7 +70,6 @@
                 break;
         }
 
-        mainAngle = angle;
         if (!state.playing) {
             state.playing = true;
             state.sound.play();
@@ -79,10 +77,7 @@
     };
 </script>
 
-<main
-    class="flex flex-col min-h-screen justify-center space-y-24 items-center"
-    style="--m-angle: {mainAngle + 'deg'};"
->
+<main class="flex flex-col min-h-screen justify-center space-y-24 items-center">
     <!-- the control panel -->
     <button
         on:click={() => {
@@ -157,8 +152,8 @@
         --bg-color: #204030;
         --line-color: rgb(103, 119, 23);
         --circular-line-color: yellowgreen;
+        --angle: 0deg;
         --angle-offset: 120deg;
-        --angle-new: var(--m-angle);
     }
 
     .radar {
@@ -197,11 +192,11 @@
 
     @keyframes scan {
         from {
-            transform: rotate(calc(var(--angle-new) - var(--angle-offset)));
+            transform: rotate(calc(var(--angle) - var(--angle-offset)));
         }
         to {
             transform: rotate(
-                calc(360deg + var(--angle-new) - var(--angle-offset))
+                calc(360deg + var(--angle) - var(--angle-offset))
             );
         }
     }
