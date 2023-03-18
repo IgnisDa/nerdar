@@ -90,8 +90,8 @@
     {/each}
 </svelte:head>
 
-<main
-    class="flex flex-col min-h-screen justify-center space-y-10 items-center"
+<div
+    class="flex flex-col justify-center space-y-10 items-center my-auto"
     style="--angle: {renderAngle + 'deg'};"
 >
     <!-- the attributions column -->
@@ -190,7 +190,7 @@
             </div>
         {/each}
     </div>
-</main>
+</div>
 
 <style>
     :root {
