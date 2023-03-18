@@ -4,8 +4,8 @@
     import { Howl } from "howler";
     import { match } from "ts-pattern";
 
+    let renderAngle = 0;
     let radarElement: HTMLDivElement;
-    let renderAngle: number;
 
     const _howlerSound = new Howl({ src: [trung], loop: true });
 
@@ -145,17 +145,17 @@
         bind:this={radarElement}
     >
         <div
-            class="radar-ring rounded-full bg-[var(--circular-line-color)] w-4 h-4"
+            class="radar-ring rounded-full bg-[var(--circular-line-color)] w-4 h-4 absolute border-2"
         />
         {#each { length: 3 } as _, num}
             <div
-                class="radar-ring rounded-full"
+                class="radar-ring rounded-full absolute border-2"
                 style="height: {(num + 1) * 110}px; width: {(num + 1) * 110}px;"
             />
         {/each}
 
         {#if state.playing}
-            <div class="scan-line" />
+            <div class="scan-line absolute w-[5px] h-1/2 top-0" />
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
@@ -226,10 +226,6 @@
     }
 
     .scan-line {
-        position: absolute;
-        width: 5px;
-        height: 50%;
-        top: 0;
         background-color: var(--circular-line-color);
         transform-origin: bottom;
         animation: scan 3s linear infinite;
@@ -256,8 +252,6 @@
 
     .radar-ring {
         border-color: var(--circular-line-color);
-        position: absolute;
-        border-width: 3px;
     }
 
     .emoji {
