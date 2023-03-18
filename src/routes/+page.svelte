@@ -52,10 +52,10 @@
         const m = yNew / xNew;
 
         enum Quadrant {
-            One,
-            Two,
-            Three,
-            Four,
+            One = 'one',
+            Two = 'two',
+            Three = 'three',
+            Four = 'four',
         }
 
         let quadrant = null;
@@ -73,7 +73,7 @@
         const newAngle = match(quadrant)
             .with(Quadrant.One, Quadrant.Four, () => 90 - angle)
             .with(Quadrant.Two, Quadrant.Three, () => 270 - angle)
-            .run();
+            .exhaustive()
 
         renderAngle = Math.floor(newAngle);
 
