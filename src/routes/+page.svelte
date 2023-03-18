@@ -43,16 +43,8 @@
         );
         if (distance > circleRadius) return;
 
-        if (
-            e.clientX < left ||
-            e.clientX > right ||
-            e.clientY < top ||
-            e.clientY > bottom
-        )
-            return;
-
-        state.emojiPosition.x = e.clientX - 40;
-        state.emojiPosition.y = e.clientY - 40;
+        state.emojiPosition.x = e.clientX - left - 40;
+        state.emojiPosition.y = e.clientY - top - 40;
 
         const xNew = e.clientX - center[0];
         const yNew = center[1] - e.clientY;
@@ -99,7 +91,7 @@
 </svelte:head>
 
 <main
-    class="flex flex-col min-h-screen justify-center space-y-16 items-center"
+    class="flex flex-col min-h-screen justify-center space-y-10 items-center"
     style="--angle: {renderAngle + 'deg'};"
 >
     <!-- the attributions column -->
@@ -159,7 +151,7 @@
             <img
                 src={selectedMode.image}
                 alt={selectedMode.name}
-                class="emoji h-20 w-20 fixed object-center"
+                class="emoji h-20 w-20 absolute object-center z-10"
                 style="left: {state.emojiPosition.x}px; top: {state
                     .emojiPosition.y}px;"
             />
