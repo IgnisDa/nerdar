@@ -36,6 +36,13 @@
             radarElement.getBoundingClientRect();
         const center = [left + (right - left) / 2, top + (bottom - top) / 2];
 
+        const circleRadius = center[0] - left;
+        const distance = Math.sqrt(
+            Math.pow(e.clientX - center[0], 2) +
+                Math.pow(e.clientY - center[1], 2)
+        );
+        if (distance > circleRadius) return;
+
         if (
             e.clientX < left ||
             e.clientX > right ||
