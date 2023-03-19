@@ -2,6 +2,7 @@
     import { Volume2 as VolumeOn, VolumeX as VolumeOff } from "lucide-svelte";
     import { Howl } from "howler";
     import { match } from "ts-pattern";
+    import SvelteSeo from "svelte-seo";
 
     let renderAngle = 0;
     let radarElement: HTMLDivElement;
@@ -89,6 +90,11 @@
     {/each}
 </svelte:head>
 
+<SvelteSeo
+    title="Nerdar"
+    description="A funny page to prank your stupid haha friends."
+    keywords="prank,funny,haha,friends,sus,nerd"
+/>
 <div
     class="flex flex-col justify-center space-y-10 items-center my-auto"
     style="--angle: {renderAngle + 'deg'};"

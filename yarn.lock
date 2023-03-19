@@ -356,13 +356,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/p5@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@types/p5@npm:1.5.0"
-  checksum: b2c2a7516e387b06ed70a8f9dc372d863942614b547cf7a116eb824b24f6f0266b79eae03a11c32dd1b8d52c980f9a93bfda888bf8b7e3ef59056f48cfe3ea36
-  languageName: node
-  linkType: hard
-
 "@types/pug@npm:^2.0.6":
   version: 2.0.6
   resolution: "@types/pug@npm:2.0.6"
@@ -1654,15 +1647,13 @@ __metadata:
     "@sveltejs/adapter-vercel": 2.3.1
     "@sveltejs/kit": 1.5.0
     "@types/howler": 2.2.7
-    "@types/p5": 1.5.0
     autoprefixer: 10.4.14
     howler: 2.2.3
     lucide-svelte: 0.125.0
-    p5: 1.6.0
-    p5-svelte: 3.1.2
     postcss: 8.4.21
     svelte: 3.54.0
     svelte-check: 3.0.1
+    svelte-seo: 1.5.3
     tailwindcss: 3.2.7
     tailwindcss-debug-screens: 2.2.1
     ts-pattern: 4.2.1
@@ -1813,25 +1804,6 @@ __metadata:
   dependencies:
     aggregate-error: ^3.0.0
   checksum: cb0ab21ec0f32ddffd31dfc250e3afa61e103ef43d957cc45497afe37513634589316de4eb88abdfd969fe6410c22c0b93ab24328833b8eb1ccc087fc0442a1c
-  languageName: node
-  linkType: hard
-
-"p5-svelte@npm:3.1.2":
-  version: 3.1.2
-  resolution: "p5-svelte@npm:3.1.2"
-  dependencies:
-    p5: ^1.4.1
-  peerDependencies:
-    "@types/p5": ^1.4.2
-    p5: ^1.4.0
-  checksum: 450dc54d6f335c31eb545eadbfccc8483073132c149cfc150f51f5a1dcad1585ecc0ba242b7bb82cf4febe8292d4736522f75f1255aa7b44252770ff8fb7fa9e
-  languageName: node
-  linkType: hard
-
-"p5@npm:1.6.0, p5@npm:^1.4.1":
-  version: 1.6.0
-  resolution: "p5@npm:1.6.0"
-  checksum: 080dddca10e71831d275747f06e49a4196cabd3aa0399d50409034b6a312f003e77ee7244eb1c5e21fe2022fbba8581ce43f487c2c1f81c8033346c597f4b18f
   languageName: node
   linkType: hard
 
@@ -2389,6 +2361,13 @@ __metadata:
     typescript:
       optional: true
   checksum: 80b317b25657a53d0343472560d13a3feb1b0e23cd15278cf491c802f027fca9313b17a652ce7a106263ce5e679bb0c3599daf4e7b9ab66fb794554ed6228d7d
+  languageName: node
+  linkType: hard
+
+"svelte-seo@npm:1.5.3":
+  version: 1.5.3
+  resolution: "svelte-seo@npm:1.5.3"
+  checksum: e196b89cd00528edc00ce46fbd69e67325473c941f3b1ce02261cdb0f30063bd86d7af4898f668cfe4be69ceb01a5d2bc5dca501a026d86f462cdfc0dd825150
   languageName: node
   linkType: hard
 
