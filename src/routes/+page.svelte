@@ -1,5 +1,4 @@
 <script lang="ts">
-    import trung from "../assets/trung-trung.mp3";
     import { Volume2 as VolumeOn, VolumeX as VolumeOff } from "lucide-svelte";
     import { Howl } from "howler";
     import { match } from "ts-pattern";
@@ -7,7 +6,7 @@
     let renderAngle = 0;
     let radarElement: HTMLDivElement;
 
-    const _howlerSound = new Howl({ src: [trung], loop: true });
+    const _howlerSound = new Howl({ src: ["/trung-trung.mp3"], loop: true });
 
     const state = {
         playing: false,
@@ -52,10 +51,10 @@
         const m = yNew / xNew;
 
         enum Quadrant {
-            One = 'one',
-            Two = 'two',
-            Three = 'three',
-            Four = 'four',
+            One = "one",
+            Two = "two",
+            Three = "three",
+            Four = "four",
         }
 
         let quadrant = null;
@@ -73,7 +72,7 @@
         const newAngle = match(quadrant)
             .with(Quadrant.One, Quadrant.Four, () => 90 - angle)
             .with(Quadrant.Two, Quadrant.Three, () => 270 - angle)
-            .exhaustive()
+            .exhaustive();
 
         renderAngle = Math.floor(newAngle);
 
